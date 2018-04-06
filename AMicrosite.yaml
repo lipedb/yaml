@@ -1,0 +1,87 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: Microsite Airtransat API
+  description: API for Airtransat Microsite
+  version: "1.0.0"
+# the domain of the service
+host: datahub-prod.apigee.net
+# array of all schemes that your API supports
+schemes:
+  - http
+# will be prefixed to all paths
+basePath: /microsite/airtransat/v-20180406
+produces:
+  - application/json
+paths:
+  /getFlights:
+    get:
+      summary: Flight information
+      description: |
+        Returns the flight information regarding the search parameters.
+      parameters:
+        - name: apikey
+          in: header
+          description: Api Key that must be acquired with Global Eagle Entertainment.
+          required: true
+          type: string
+        - name: company_code
+          in: query
+          description: The 3-letter company code of the airline (MKTCARRIER ICAO code).
+          required: true
+          type: string
+        - name: start_date
+          in: query
+          description: Lower limit (included) of flight search date range (yyyy-mm-dd).
+          required: true
+          type: string
+        - name: end_date
+          in: query
+          description: Upper limit (included) of flight search date range (yyyy-mm-dd).
+          required: true
+          type: string
+        - name: flight_number
+          in: query
+          description: Returns only matching flight number.  (case insensitive).
+          required: false
+          type: string
+        - name: departure_airport
+          in: query
+          description: Returns only matching IATA departure airport code (case insensitive).
+          required: false
+          type: string
+        - name: arrival_airport
+          in: query
+          description: Returns only matching IATA arrival airport code (case insensitive).
+          required: false
+          type: string
+      responses:
+        200:
+          description: An array of Flights
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Flights'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  
+definitions:
+  Flights:
+    type: object
+    properties:
+      id:
+        type: string
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
+
