@@ -6,7 +6,7 @@ info:
   description: API for Airtransat Microsite
   version: "1.0.0"
 # the domain of the service
-host: datahub-prod.apigee.net
+host: datahub-test.apigee.net
 # array of all schemes that your API supports
 schemes:
   - http
