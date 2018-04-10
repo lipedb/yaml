@@ -6,12 +6,12 @@ info:
   description: API for Airtransat Microsite
   version: "1.0.0"
 # the domain of the service
-host: datahub-test.apigee.net
+host: datahub-prod.apigee.net
 # array of all schemes that your API supports
 schemes:
   - http
 # will be prefixed to all paths
-basePath: /microsite/airtransat/version/20180308
+basePath: /microsite/airtransat/v-20180308
 produces:
   - application/json
 paths:
@@ -43,7 +43,7 @@ paths:
           type: string
         - name: flight_number
           in: query
-          description: Returns only matching flight number.Â  (case insensitive).
+          description: Returns only matching flight number.  (case insensitive).
           required: false
           type: string
         - name: departure_airport
